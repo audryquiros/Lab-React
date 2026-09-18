@@ -1,6 +1,10 @@
 import "./SearchBar.css";
 
-const SearchBar = ({ value, onChange }) => {
+const SearchBar = ({
+    value,
+    onChange,
+    placeholder = "Search the archives...",
+}) => {
     return (
         <div className="search-bar">
             <span className="search-bar__icon">⌕</span>
@@ -9,8 +13,8 @@ const SearchBar = ({ value, onChange }) => {
                 type="text"
                 value={value}
                 onChange={(event) => onChange(event.target.value)}
-                placeholder="Search magical creatures..."
-                aria-label="Search magical creatures"
+                placeholder={placeholder}
+                aria-label={placeholder}
             />
 
             {value && (

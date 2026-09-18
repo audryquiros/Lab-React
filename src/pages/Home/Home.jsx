@@ -198,8 +198,8 @@ const Home = () => {
 
                     {/* MAGIC ITEMS */}
 
-                    <a
-                        href="#items"
+                    <Link
+                        to="/items"
                         className="home__collection-card"
                     >
 
@@ -222,11 +222,11 @@ const Home = () => {
                         </p>
 
                         <strong>
-                            Coming soon
+                            Explore
                             <span>→</span>
                         </strong>
 
-                    </a>
+                    </Link>
 
                 </div>
 

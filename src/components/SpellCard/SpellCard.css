@@ -1,22 +1,12 @@
 .spell-card {
     position: relative;
-
-    min-height: 300px;
-
+    height: 330px;
     overflow: hidden;
 
     border: 1px solid #e3d9e8;
     border-radius: 22px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff 0%,
-            #faf7fc 100%
-        );
-
-    box-shadow:
-        0 10px 30px rgba(63, 42, 75, 0.06);
+    background: linear-gradient(145deg, #ffffff 0%, #faf7fc 100%);
+    box-shadow: 0 10px 30px rgba(63, 42, 75, 0.06);
 
     transition:
         transform 0.3s ease,
@@ -26,47 +16,46 @@
 
 .spell-card::before {
     content: "";
-
     position: absolute;
-
     top: -70px;
     right: -70px;
 
-    width: 160px;
-    height: 160px;
-
+    width: 170px;
+    height: 170px;
     border-radius: 50%;
 
     background: #eee3f5;
+    opacity: 0.55;
+}
 
-    opacity: 0.45;
+.spell-card::after {
+    content: "";
+    position: absolute;
+    bottom: -70px;
+    left: -70px;
+
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+
+    background: #e8eee9;
+    opacity: 0.4;
 }
 
 .spell-card:hover {
     transform: translateY(-7px);
-
     border-color: #c9afd8;
-
-    box-shadow:
-        0 18px 40px rgba(63, 42, 75, 0.12);
+    box-shadow: 0 18px 40px rgba(63, 42, 75, 0.12);
 }
-
-/* =========================
-   ORNAMENT
-========================= */
 
 .spell-card__ornament {
     position: absolute;
-
     top: 20px;
     right: 24px;
-
     z-index: 2;
 
     color: #b093c3;
-
     font-size: 1.2rem;
-
     line-height: 1;
 
     transition:
@@ -77,17 +66,11 @@
 
 .spell-card:hover .spell-card__ornament {
     transform: rotate(45deg) scale(1.2);
-
     color: #c09b55;
-
     text-shadow:
         0 0 5px rgba(192, 155, 85, 0.35),
         0 0 12px rgba(192, 155, 85, 0.2);
 }
-
-/* =========================
-   CONTENT
-========================= */
 
 .spell-card__content {
     position: relative;
@@ -97,110 +80,76 @@
     flex-direction: column;
 
     height: 100%;
-
-    padding: 32px 28px;
+    padding: 28px 28px 24px;
 }
 
 .spell-card__label {
-    color: #9a7bb5;
-
+    color: #9273a8;
     font-size: 0.7rem;
-    font-weight: 600;
-
+    font-weight: 700;
     letter-spacing: 1.5px;
-
     text-transform: uppercase;
 }
 
 .spell-card__name {
     margin: 10px 0 0;
 
-    color: #33283d;
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
+    color: #352a3c;
+    font-family: Georgia, "Times New Roman", serif;
     font-size: 1.65rem;
     font-weight: 500;
-
     line-height: 1.2;
 }
 
 .spell-card__divider {
     display: flex;
     align-items: center;
-
     gap: 10px;
-
-    margin: 18px 0;
+    margin: 17px 0;
 }
 
 .spell-card__divider::before,
 .spell-card__divider::after {
     content: "";
-
     height: 1px;
-
     flex: 1;
-
     background: #e5dce9;
 }
 
 .spell-card__divider span {
     color: #c09b55;
-
     font-size: 0.7rem;
 }
 
-/* =========================
-   INFO
-========================= */
-
 .spell-card__info {
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
     gap: 10px;
-
-    margin-bottom: 25px;
 }
 
 .spell-card__detail {
     display: flex;
     flex-direction: column;
+    gap: 4px;
 
-    gap: 5px;
-
-    padding: 12px;
-
+    padding: 11px 12px;
     border-radius: 12px;
-
     background: #f7f1fa;
 }
 
 .spell-card__detail span {
     color: #988f9d;
-
     font-size: 0.65rem;
     font-weight: 600;
-
     letter-spacing: 0.7px;
-
     text-transform: uppercase;
 }
 
 .spell-card__detail strong {
     color: #60466f;
-
     font-size: 0.82rem;
+    font-weight: 600;
 }
-
-/* =========================
-   BUTTON
-========================= */
 
 .spell-card__button {
     display: flex;
@@ -208,19 +157,13 @@
     justify-content: space-between;
 
     margin-top: auto;
-
     padding-top: 15px;
-
     border-top: 1px solid #e5dce9;
 
     color: #60466f;
-
     font-size: 0.8rem;
     font-weight: 600;
-
     text-decoration: none;
-
-    transition: color 0.2s ease;
 }
 
 .spell-card__button span {
@@ -233,4 +176,14 @@
 
 .spell-card__button:hover span {
     transform: translateX(4px);
+}
+
+@media (max-width: 600px) {
+    .spell-card__content {
+        padding: 26px 24px 22px;
+    }
+
+    .spell-card__name {
+        font-size: 1.55rem;
+    }
 }

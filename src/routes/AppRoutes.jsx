@@ -1,11 +1,15 @@
 import { Routes, Route } from "react-router-dom";
 
 import Home from "../pages/Home/Home";
+
 import Creatures from "../pages/Creatures/Creatures";
 import CreatureDetail from "../pages/CreatureDetail/CreatureDetail";
+
 import Spells from "../pages/Spells/Spells";
 import SpellDetail from "../pages/SpellDetail/SpellDetail";
+
 import MagicItems from "../pages/MagicItems/MagicItems";
+import MagicItemDetail from "../pages/MagicItemDetail/MagicItemDetail";
 
 const AppRoutes = () => {
     return (
@@ -15,6 +19,10 @@ const AppRoutes = () => {
                 path="/"
                 element={<Home />}
             />
+
+            {/* =========================
+                CREATURES
+            ========================= */}
 
             <Route
                 path="/creatures"
@@ -26,6 +34,10 @@ const AppRoutes = () => {
                 element={<CreatureDetail />}
             />
 
+            {/* =========================
+                SPELLS
+            ========================= */}
+
             <Route
                 path="/spells"
                 element={<Spells />}
@@ -36,9 +48,18 @@ const AppRoutes = () => {
                 element={<SpellDetail />}
             />
 
+            {/* =========================
+                MAGIC ITEMS
+            ========================= */}
+
             <Route
                 path="/items"
                 element={<MagicItems />}
+            />
+
+            <Route
+                path="/magic-item/:id"
+                element={<MagicItemDetail />}
             />
 
         </Routes>

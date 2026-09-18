@@ -151,6 +151,7 @@ const Creatures = () => {
                 <SearchBar
                     value={searchTerm}
                     onChange={handleSearchChange}
+                    placeholder="Search magical creatures..."
                 />
 
             </section>

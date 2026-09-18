@@ -22,11 +22,8 @@ const Spells = () => {
 
     const [page, setPage] = useState(1);
 
-    const [hasNextPage, setHasNextPage] =
-        useState(false);
-
-    const [hasPreviousPage, setHasPreviousPage] =
-        useState(false);
+    const [hasNextPage, setHasNextPage] = useState(false);
+    const [hasPreviousPage, setHasPreviousPage] = useState(false);
 
     useEffect(() => {
         const loadSpells = async () => {
@@ -47,19 +44,12 @@ const Spells = () => {
                 }
 
                 setSpells(data.results || []);
-
-                setHasNextPage(
-                    Boolean(data.next)
-                );
-
-                setHasPreviousPage(
-                    Boolean(data.previous)
-                );
+                setHasNextPage(Boolean(data.next));
+                setHasPreviousPage(Boolean(data.previous));
             } catch (error) {
                 console.error(error);
 
                 setSpells([]);
-
                 setHasNextPage(false);
                 setHasPreviousPage(false);
 
@@ -84,120 +74,93 @@ const Spells = () => {
     };
 
     const handleNextPage = () => {
-        if (hasNextPage) {
-            setPage(
-                (currentPage) =>
-                    currentPage + 1
-            );
+        if (!hasNextPage) return;
 
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-            });
-        }
+        setPage((currentPage) => currentPage + 1);
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
     };
 
     const handlePreviousPage = () => {
-        if (hasPreviousPage) {
-            setPage(
-                (currentPage) =>
-                    currentPage - 1
-            );
+        if (!hasPreviousPage) return;
 
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-            });
-        }
+        setPage((currentPage) => currentPage - 1);
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
     };
 
     return (
         <main className="spells">
-
             <section className="spells__hero">
+                <div className="spells__hero-symbol">
+                    ✦
+                </div>
 
-                <p className="spells__eyebrow">
-                    ✦ Arcane Archives
-                </p>
+                <span className="spells__eyebrow">
+                    Volume II · The Arcane Archives
+                </span>
 
-                <h1>
-                    Spell Library
-                </h1>
+                <h1>Spell Library</h1>
 
-                <p className="spells__description">
+                <p>
                     Explore ancient incantations,
                     powerful rituals and magical
-                    knowledge preserved in the
+                    knowledge preserved within the
                     enchanted archives.
                 </p>
 
                 <SearchBar
                     value={searchTerm}
                     onChange={handleSearchChange}
+                    placeholder="Search magical spells..."
                 />
-
             </section>
 
-
             <section className="spells__collection">
-
-                <div className="spells__section-header">
-
+                <div className="spells__header">
                     <div>
-
-                        <span className="spells__section-label">
-                            Arcane Collection
+                        <span>
+                            The Arcane Archives
                         </span>
 
                         <h2>
                             {searchTerm
                                 ? "Search Results"
-                                : "Spells"}
+                                : "Spell Collection"}
                         </h2>
-
                     </div>
 
+                    <div className="spells__page">
+                        Page {page}
+                    </div>
                 </div>
 
-
-                {loading && (
-                    <Loader />
-                )}
-
+                {loading && <Loader />}
 
                 {!loading && error && (
-                    <ErrorMessage
-                        message={error}
-                    />
+                    <ErrorMessage message={error} />
                 )}
-
 
                 {!loading && !error && (
                     <>
-                        <SpellGrid
-                            spells={spells}
-                        />
+                        <SpellGrid spells={spells} />
 
                         <Pagination
                             currentPage={page}
-                            hasNextPage={
-                                hasNextPage
-                            }
-                            hasPreviousPage={
-                                hasPreviousPage
-                            }
-                            onNext={
-                                handleNextPage
-                            }
-                            onPrevious={
-                                handlePreviousPage
-                            }
+                            hasNextPage={hasNextPage}
+                            hasPreviousPage={hasPreviousPage}
+                            onNext={handleNextPage}
+                            onPrevious={handlePreviousPage}
                         />
                     </>
                 )}
-
             </section>
-
         </main>
     );
 };
