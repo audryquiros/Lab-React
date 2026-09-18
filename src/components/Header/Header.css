@@ -1,0 +1,182 @@
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    width: 100%;
+
+    border-bottom: 1px solid #e6dfe9;
+
+    background: rgba(247, 244, 248, 0.94);
+
+    backdrop-filter: blur(14px);
+}
+
+.header__container {
+    width: min(1400px, 88%);
+    min-height: 78px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin: 0 auto;
+}
+
+/* =========================
+   LOGO
+========================= */
+
+.header__logo {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    color: #352a3c;
+
+    text-decoration: none;
+}
+
+.header__logo-symbol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 34px;
+
+    border: 1px solid #d6c6de;
+    border-radius: 50%;
+
+    color: #a27bb8;
+
+    font-size: 0.9rem;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+.header__logo:hover .header__logo-symbol {
+    transform: rotate(45deg);
+
+    background: #eee3f5;
+}
+
+.header__logo-text {
+    display: flex;
+    flex-direction: column;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 1.1rem;
+    font-weight: 600;
+
+    line-height: 1.05;
+}
+
+.header__logo-text span {
+    color: #8b6ba8;
+
+    font-size: 0.85rem;
+
+    font-style: italic;
+    font-weight: 400;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.header__nav {
+    display: flex;
+    align-items: center;
+
+    gap: 34px;
+}
+
+.header__link {
+    position: relative;
+
+    padding: 8px 0;
+
+    color: #746b78;
+
+    font-size: 0.82rem;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.header__link::after {
+    content: "";
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    width: 0;
+    height: 1px;
+
+    background: #8b6ba8;
+
+    transition: width 0.25s ease;
+}
+
+.header__link:hover {
+    color: #49345a;
+}
+
+.header__link:hover::after {
+    width: 100%;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+    .header__container {
+        min-height: 70px;
+    }
+
+    .header__nav {
+        gap: 16px;
+    }
+
+    .header__link {
+        font-size: 0.75rem;
+    }
+
+    .header__logo-text {
+        font-size: 1rem;
+    }
+
+    .header__logo-text span {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 520px) {
+    .header__container {
+        width: 90%;
+    }
+
+    .header__nav {
+        gap: 12px;
+    }
+
+    .header__link {
+        font-size: 0;
+    }
+
+    .header__link:first-child {
+        font-size: 0.75rem;
+    }
+}

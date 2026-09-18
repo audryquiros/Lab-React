@@ -1,0 +1,257 @@
+.creature-card {
+    position: relative;
+    min-height: 330px;
+    overflow: hidden;
+
+    border: 1px solid #e3d9e8;
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff 0%,
+            #faf7fc 100%
+        );
+
+    box-shadow:
+        0 10px 30px rgba(63, 42, 75, 0.06);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.creature-card::before {
+    content: "";
+    position: absolute;
+    top: -80px;
+    right: -80px;
+
+    width: 170px;
+    height: 170px;
+
+    border-radius: 50%;
+
+    background: #eee3f5;
+    opacity: 0.6;
+}
+
+.creature-card::after {
+    content: "";
+    position: absolute;
+    bottom: -70px;
+    left: -70px;
+
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+
+    background: #e8eee9;
+    opacity: 0.45;
+}
+
+.creature-card:hover {
+    transform: translateY(-7px);
+
+    border-color: #c9afd8;
+
+    box-shadow:
+        0 18px 40px rgba(63, 42, 75, 0.12);
+}
+
+/* =========================
+   ORNAMENT
+========================= */
+
+.creature-card__ornament {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    z-index: 2;
+
+    color: #b093c3;
+
+    font-size: 1.2rem;
+    line-height: 1;
+
+    transition:
+        transform 0.4s ease,
+        color 0.3s ease,
+        text-shadow 0.3s ease;
+}
+
+.creature-card:hover .creature-card__ornament {
+    transform: rotate(45deg) scale(1.2);
+
+    color: #c09b55;
+
+    text-shadow:
+        0 0 5px rgba(192, 155, 85, 0.35),
+        0 0 12px rgba(192, 155, 85, 0.2);
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.creature-card__content {
+    position: relative;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+    min-height: 330px;
+
+    padding: 32px 28px 26px;
+}
+
+.creature-card__label {
+    color: #9273a8;
+
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.creature-card__name {
+    margin: 12px 0 0;
+
+    color: #352a3c;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 1.8rem;
+    font-weight: 500;
+
+    line-height: 1.2;
+}
+
+.creature-card__divider {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    margin: 20px 0;
+}
+
+.creature-card__divider::before,
+.creature-card__divider::after {
+    content: "";
+
+    display: block;
+
+    height: 1px;
+
+    flex: 1;
+
+    background: #e5dce9;
+}
+
+.creature-card__divider span {
+    color: #c09b55;
+    font-size: 0.8rem;
+}
+
+/* =========================
+   DETAILS
+========================= */
+
+.creature-card__info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+}
+
+.creature-card__detail {
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.creature-card__detail span {
+    color: #988f9d;
+
+    font-size: 0.72rem;
+    font-weight: 600;
+
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.creature-card__detail strong {
+    color: #4b3d52;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Challenge ocupa todo el ancho */
+
+.creature-card__detail:last-child {
+    grid-column: 1 / -1;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.creature-card__button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: auto;
+    padding-top: 22px;
+
+    color: #6e4f80;
+
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        gap 0.2s ease;
+}
+
+.creature-card__button span {
+    font-size: 1.1rem;
+
+    transition:
+        transform 0.2s ease;
+}
+
+.creature-card__button:hover {
+    color: #49345a;
+}
+
+.creature-card__button:hover span {
+    transform: translateX(5px);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+    .creature-card__content {
+        padding: 28px 24px 24px;
+    }
+
+    .creature-card__name {
+        font-size: 1.6rem;
+    }
+}

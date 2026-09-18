@@ -1,0 +1,169 @@
+.spells {
+    min-height: 100vh;
+
+    padding:
+        40px
+        6%
+        80px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.spells__hero {
+    max-width: 850px;
+
+    margin:
+        40px
+        auto
+        70px;
+
+    text-align: center;
+}
+
+.spells__eyebrow {
+    margin:
+        0
+        0
+        12px;
+
+    color: #8b6ba8;
+
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+.spells__hero h1 {
+    margin: 0;
+
+    color: #33283d;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            3rem,
+            7vw,
+            5.5rem
+        );
+
+    font-weight: 500;
+
+    line-height: 1;
+}
+
+.spells__description {
+    max-width: 650px;
+
+    margin:
+        25px
+        auto
+        0;
+
+    color: #746b78;
+
+    font-size: 1.05rem;
+
+    line-height: 1.8;
+}
+
+/* =========================
+   COLLECTION
+========================= */
+
+.spells__collection {
+    width:
+        min(
+            1400px,
+            100%
+        );
+
+    margin: 0 auto;
+}
+
+.spells__section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    margin-bottom: 30px;
+}
+
+.spells__section-label {
+    color: #9a7bb5;
+
+    font-size: 0.8rem;
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+}
+
+.spells__section-header h2 {
+    margin:
+        5px
+        0
+        0;
+
+    color: #33283d;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 2.2rem;
+
+    font-weight: 500;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+    .spells {
+        padding:
+            30px
+            5%
+            60px;
+    }
+
+    .spells__hero {
+        margin:
+            30px
+            auto
+            50px;
+    }
+
+    .spells__hero h1 {
+        font-size: 3rem;
+    }
+
+    .spells__description {
+        font-size: 0.95rem;
+    }
+
+    .spells__section-header h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .spells__hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .spells__hero {
+        margin-bottom: 40px;
+    }
+}

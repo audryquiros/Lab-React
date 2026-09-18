@@ -1,0 +1,398 @@
+.creature-detail {
+    min-height: 100vh;
+    padding: 45px 6% 80px;
+}
+
+.creature-detail__container {
+    width: min(1000px, 100%);
+    margin: 0 auto;
+}
+
+/* =========================
+   BACK
+========================= */
+
+.creature-detail__back {
+    display: inline-flex;
+    align-items: center;
+
+    margin-bottom: 25px;
+
+    color: #6e4f80;
+
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.creature-detail__back:hover {
+    color: #49345a;
+    transform: translateX(-4px);
+}
+
+/* =========================
+   CARD
+========================= */
+
+.creature-detail__card {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 60px;
+
+    border: 1px solid #e3d9e8;
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff 0%,
+            #faf7fc 100%
+        );
+
+    box-shadow:
+        0 18px 50px rgba(63, 42, 75, 0.08);
+}
+
+.creature-detail__card::before {
+    content: "";
+
+    position: absolute;
+
+    top: -150px;
+    right: -150px;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+
+    background: #eee3f5;
+
+    opacity: 0.5;
+}
+
+.creature-detail__card::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: -120px;
+    left: -120px;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    background: #e8eee9;
+
+    opacity: 0.4;
+}
+
+/* =========================
+   SYMBOL
+========================= */
+
+.creature-detail__symbol {
+    position: absolute;
+
+    top: 30px;
+    right: 35px;
+
+    color: #b093c3;
+
+    font-size: 1.5rem;
+
+    transition:
+        transform 0.4s ease,
+        color 0.3s ease,
+        text-shadow 0.3s ease;
+}
+
+.creature-detail__card:hover .creature-detail__symbol {
+    transform: rotate(45deg) scale(1.15);
+
+    color: #c09b55;
+
+    text-shadow:
+        0 0 6px rgba(192, 155, 85, 0.35),
+        0 0 14px rgba(192, 155, 85, 0.2);
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.creature-detail__header {
+    position: relative;
+    z-index: 1;
+
+    text-align: center;
+}
+
+.creature-detail__label {
+    color: #9273a8;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.creature-detail__header h1 {
+    margin: 12px 0 0;
+
+    color: #352a3c;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 500;
+
+    line-height: 1.1;
+}
+
+.creature-detail__divider {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    max-width: 300px;
+
+    margin: 25px auto;
+}
+
+.creature-detail__divider::before,
+.creature-detail__divider::after {
+    content: "";
+
+    height: 1px;
+
+    flex: 1;
+
+    background: #e3d9e8;
+}
+
+.creature-detail__divider span {
+    color: #c09b55;
+
+    font-size: 0.8rem;
+}
+
+/* =========================
+   OVERVIEW
+========================= */
+
+.creature-detail__overview {
+    position: relative;
+    z-index: 1;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    margin-top: 35px;
+
+    border-top: 1px solid #e5dce9;
+    border-bottom: 1px solid #e5dce9;
+}
+
+.creature-detail__item {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+
+    padding: 22px;
+
+    text-align: center;
+}
+
+.creature-detail__item + .creature-detail__item {
+    border-left: 1px solid #e5dce9;
+}
+
+.creature-detail__item span,
+.creature-detail__stat span {
+    color: #988f9d;
+
+    font-size: 0.7rem;
+    font-weight: 600;
+
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.creature-detail__item strong {
+    color: #4b3d52;
+
+    font-size: 0.9rem;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.creature-detail__section {
+    position: relative;
+    z-index: 1;
+
+    margin-top: 45px;
+}
+
+.creature-detail__section-label {
+    display: block;
+
+    margin-bottom: 15px;
+
+    color: #9273a8;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.creature-detail__description {
+    margin: 0;
+
+    color: #655b69;
+
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.creature-detail__stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+.creature-detail__stat {
+    padding: 18px;
+
+    border: 1px solid #e5dce9;
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.creature-detail__stat strong {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #4b3d52;
+
+    font-size: 0.95rem;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+
+.creature-detail__actions {
+    display: flex;
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+.creature-detail__action {
+    padding: 20px;
+
+    border-left: 2px solid #c9afd8;
+
+    background: rgba(238, 227, 245, 0.35);
+}
+
+.creature-detail__action h3 {
+    margin: 0 0 8px;
+
+    color: #49345a;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.creature-detail__action p {
+    margin: 0;
+
+    color: #746b78;
+
+    font-size: 0.88rem;
+    line-height: 1.6;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 800px) {
+    .creature-detail__card {
+        padding: 45px 30px;
+    }
+
+    .creature-detail__overview {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .creature-detail__item:nth-child(3) {
+        border-left: none;
+        border-top: 1px solid #e5dce9;
+    }
+
+    .creature-detail__item:nth-child(4) {
+        border-top: 1px solid #e5dce9;
+    }
+
+    .creature-detail__stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .creature-detail {
+        padding: 30px 5% 60px;
+    }
+
+    .creature-detail__card {
+        padding: 40px 22px;
+        border-radius: 20px;
+    }
+
+    .creature-detail__overview {
+        grid-template-columns: 1fr;
+    }
+
+    .creature-detail__item + .creature-detail__item {
+        border-left: none;
+        border-top: 1px solid #e5dce9;
+    }
+
+    .creature-detail__header h1 {
+        font-size: 2.5rem;
+    }
+}

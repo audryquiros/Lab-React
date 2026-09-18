@@ -1,0 +1,73 @@
+.error-message {
+    max-width: 600px;
+    margin: 80px auto;
+    padding: 30px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+
+    border: 1px solid #e3d9e8;
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 10px 30px rgba(63, 42, 75, 0.06);
+}
+
+.error-message__icon {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #f2e8f5;
+
+    color: #8b6ba8;
+
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.error-message__content {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.error-message__label {
+    color: #49345a;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.error-message__content p {
+    margin: 0;
+
+    color: #746b78;
+
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+    .error-message {
+        margin: 50px 20px;
+        padding: 24px;
+    }
+}

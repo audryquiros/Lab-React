@@ -1,0 +1,131 @@
+.home {
+    min-height: 100vh;
+    padding: 40px 6% 80px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.home__hero {
+    max-width: 850px;
+    margin: 40px auto 70px;
+
+    text-align: center;
+}
+
+.home__eyebrow {
+    margin: 0 0 12px;
+
+    color: #8b6ba8;
+
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.home__hero h1 {
+    margin: 0;
+
+    color: #33283d;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 500;
+
+    line-height: 1;
+}
+
+.home__description {
+    max-width: 650px;
+
+    margin: 25px auto 0;
+
+    color: #746b78;
+
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+/* =========================
+   CREATURES
+========================= */
+
+.home__creatures {
+    width: min(1400px, 100%);
+    margin: 0 auto;
+}
+
+.home__section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    margin-bottom: 30px;
+}
+
+.home__section-label {
+    color: #9a7bb5;
+
+    font-size: 0.8rem;
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.home__section-header h2 {
+    margin: 5px 0 0;
+
+    color: #33283d;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 2.2rem;
+    font-weight: 500;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+    .home {
+        padding: 30px 5% 60px;
+    }
+
+    .home__hero {
+        margin: 30px auto 50px;
+    }
+
+    .home__hero h1 {
+        font-size: 3rem;
+    }
+
+    .home__description {
+        font-size: 0.95rem;
+    }
+
+    .home__section-header h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .home__hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .home__hero {
+        margin-bottom: 40px;
+    }
+}
