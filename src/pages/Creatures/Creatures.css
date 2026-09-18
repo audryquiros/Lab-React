@@ -1,0 +1,262 @@
+.creatures {
+    min-height: 100vh;
+
+    padding:
+        40px
+        6%
+        80px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.creatures__hero {
+    position: relative;
+
+    width:
+        min(
+            900px,
+            100%
+        );
+
+    margin:
+        40px
+        auto
+        75px;
+
+    text-align: center;
+}
+
+.creatures__hero-symbol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 48px;
+    height: 48px;
+
+    margin:
+        0
+        auto
+        22px;
+
+    border:
+        1px solid
+        #ddcde6;
+
+    border-radius: 50%;
+
+    color: #b093c3;
+
+    font-size: 1rem;
+
+    animation:
+        creatures-symbol-float
+        3s
+        ease-in-out
+        infinite;
+}
+
+.creatures__eyebrow {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #9a7bb5;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+.creatures__hero h1 {
+    margin: 0;
+
+    color: #33283d;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            3rem,
+            7vw,
+            5.5rem
+        );
+
+    font-weight: 500;
+
+    line-height: 1;
+}
+
+.creatures__hero p {
+    max-width: 650px;
+
+    margin:
+        25px
+        auto
+        0;
+
+    color: #746b78;
+
+    font-size: 1rem;
+
+    line-height: 1.8;
+}
+
+
+/* =========================
+   COLLECTION
+========================= */
+
+.creatures__collection {
+    width:
+        min(
+            1400px,
+            100%
+        );
+
+    margin: 0 auto;
+}
+
+.creatures__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    margin-bottom: 30px;
+
+    padding-bottom: 20px;
+
+    border-bottom:
+        1px solid
+        #e3d9e8;
+}
+
+.creatures__header > div:first-child > span {
+    color: #9a7bb5;
+
+    font-size: 0.72rem;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+}
+
+.creatures__header h2 {
+    margin:
+        6px
+        0
+        0;
+
+    color: #33283d;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 2.2rem;
+
+    font-weight: 500;
+}
+
+.creatures__page {
+    padding:
+        8px
+        14px;
+
+    border:
+        1px solid
+        #e1d6e7;
+
+    border-radius: 20px;
+
+    background: #ffffff;
+
+    color: #80658e;
+
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes creatures-symbol-float {
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    50% {
+        transform:
+            translateY(-6px)
+            rotate(8deg);
+    }
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+    .creatures {
+        padding:
+            30px
+            5%
+            60px;
+    }
+
+    .creatures__hero {
+        margin:
+            30px
+            auto
+            55px;
+    }
+
+    .creatures__hero h1 {
+        font-size: 3rem;
+    }
+
+    .creatures__hero p {
+        font-size: 0.92rem;
+    }
+
+    .creatures__header h2 {
+        font-size: 1.8rem;
+    }
+}
+
+
+@media (max-width: 550px) {
+
+    .creatures__hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .creatures__header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .creatures__page {
+        align-self: flex-start;
+    }
+}

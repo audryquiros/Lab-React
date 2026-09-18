@@ -1,149 +1,265 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
-import {
-    getCreatures,
-    searchCreatures,
-} from "../../services/api";
+import { getCreatures } from "../../services/api";
 
-import CreatureGrid from "../../components/CreatureGrid/CreatureGrid";
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
-import SearchBar from "../../components/SearchBar/SearchBar";
-import Pagination from "../../components/Pagination/Pagination";
+import CreatureCard from "../../components/CreatureCard/CreatureCard";
 
 import "./Home.css";
 
 const Home = () => {
-    const [creatures, setCreatures] = useState([]);
-    const [searchTerm, setSearchTerm] = useState("");
+    const [featuredCreatures, setFeaturedCreatures] = useState([]);
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const [page, setPage] = useState(1);
-
-    const [hasNextPage, setHasNextPage] = useState(false);
-    const [hasPreviousPage, setHasPreviousPage] = useState(false);
-
     useEffect(() => {
-        const loadCreatures = async () => {
+        const loadFeaturedCreatures = async () => {
             try {
                 setLoading(true);
                 setError(null);
 
-                let data;
+                const data = await getCreatures(1, 4);
 
-                if (searchTerm.trim() === "") {
-                    data = await getCreatures(page, 20);
-                } else {
-                    data = await searchCreatures(
-                        searchTerm.trim(),
-                        page,
-                        20
-                    );
-                }
-
-                setCreatures(data.results || []);
-
-                setHasNextPage(Boolean(data.next));
-                setHasPreviousPage(Boolean(data.previous));
+                setFeaturedCreatures(
+                    data.results || []
+                );
             } catch (error) {
                 console.error(error);
 
-                setCreatures([]);
-                setHasNextPage(false);
-                setHasPreviousPage(false);
-
                 setError(
-                    "We couldn't find any magical creatures."
+                    "We couldn't open the enchanted library."
                 );
             } finally {
                 setLoading(false);
             }
         };
 
-        const timeout = setTimeout(() => {
-            loadCreatures();
-        }, 400);
-
-        return () => clearTimeout(timeout);
-    }, [searchTerm, page]);
-
-    const handleSearchChange = (value) => {
-        setSearchTerm(value);
-        setPage(1);
-    };
-
-    const handleNextPage = () => {
-        if (hasNextPage) {
-            setPage((currentPage) => currentPage + 1);
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-            });
-        }
-    };
-
-    const handlePreviousPage = () => {
-        if (hasPreviousPage) {
-            setPage((currentPage) => currentPage - 1);
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-            });
-        }
-    };
+        loadFeaturedCreatures();
+    }, []);
 
     return (
         <main className="home">
 
-            {/* HERO */}
+            {/* =========================
+                HERO
+            ========================= */}
 
             <section className="home__hero">
 
-                <p className="home__eyebrow">
-                    ✦ Welcome to the library
-                </p>
+                <div className="home__stars home__stars--one">
+                    ✦
+                </div>
 
-                <h1>
-                    Enchanted Library
-                </h1>
+                <div className="home__stars home__stars--two">
+                    ✧
+                </div>
 
-                <p className="home__description">
-                    Discover magical creatures, ancient beings
-                    and extraordinary inhabitants of enchanted
-                    worlds.
-                </p>
+                <div className="home__stars home__stars--three">
+                    ✦
+                </div>
 
-                <SearchBar
-                    value={searchTerm}
-                    onChange={handleSearchChange}
-                />
+                <div className="home__stars home__stars--four">
+                    ·
+                </div>
+
+
+                <div className="home__hero-content">
+
+                    <span className="home__eyebrow">
+                        ✦ The enchanted archives
+                    </span>
+
+                    <h1>
+                        Enchanted
+                        <span>
+                            Library
+                        </span>
+                    </h1>
+
+                    <p className="home__description">
+                        A quiet collection of magical
+                        knowledge, ancient creatures,
+                        arcane spells and extraordinary
+                        artifacts.
+                    </p>
+
+                    <Link
+                        to="/creatures"
+                        className="home__hero-button"
+                    >
+                        Explore the library
+                        <span>→</span>
+                    </Link>
+
+                </div>
+
+
+                <div className="home__hero-symbol">
+                    ✦
+                </div>
 
             </section>
 
 
-            {/* CREATURE COLLECTION */}
+            {/* =========================
+                COLLECTION
+            ========================= */}
 
-            <section className="home__creatures">
+            <section className="home__collection">
 
-                <div className="home__section-header">
+                <div className="home__section-heading">
+
+                    <span>
+                        The archives
+                    </span>
+
+                    <h2>
+                        Explore the collection
+                    </h2>
+
+                    <p>
+                        Discover the different sections
+                        preserved within the library.
+                    </p>
+
+                </div>
+
+
+                <div className="home__collection-grid">
+
+                    {/* CREATURES */}
+
+                    <Link
+                        to="/creatures"
+                        className="home__collection-card"
+                    >
+
+                        <div className="home__collection-symbol">
+                            ✦
+                        </div>
+
+                        <span>
+                            Volume I
+                        </span>
+
+                        <h3>
+                            Creatures
+                        </h3>
+
+                        <p>
+                            Discover magical beings,
+                            ancient monsters and
+                            extraordinary inhabitants.
+                        </p>
+
+                        <strong>
+                            Explore
+                            <span>→</span>
+                        </strong>
+
+                    </Link>
+
+
+                    {/* SPELLS */}
+
+                    <Link
+                        to="/spells"
+                        className="home__collection-card"
+                    >
+
+                        <div className="home__collection-symbol">
+                            ✧
+                        </div>
+
+                        <span>
+                            Volume II
+                        </span>
+
+                        <h3>
+                            Spells
+                        </h3>
+
+                        <p>
+                            Explore arcane incantations,
+                            rituals and forgotten magical
+                            knowledge.
+                        </p>
+
+                        <strong>
+                            Explore
+                            <span>→</span>
+                        </strong>
+
+                    </Link>
+
+
+                    {/* MAGIC ITEMS */}
+
+                    <a
+                        href="#items"
+                        className="home__collection-card"
+                    >
+
+                        <div className="home__collection-symbol">
+                            ◇
+                        </div>
+
+                        <span>
+                            Volume III
+                        </span>
+
+                        <h3>
+                            Magic Items
+                        </h3>
+
+                        <p>
+                            Discover enchanted objects,
+                            legendary artifacts and
+                            mysterious relics.
+                        </p>
+
+                        <strong>
+                            Coming soon
+                            <span>→</span>
+                        </strong>
+
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            {/* =========================
+                FEATURED CREATURES
+            ========================= */}
+
+            <section className="home__featured">
+
+                <div className="home__featured-heading">
 
                     <div>
 
-                        <span className="home__section-label">
-                            Magical Collection
+                        <span>
+                            From the archives
                         </span>
 
                         <h2>
-                            {searchTerm
-                                ? "Search Results"
-                                : "Creatures"}
+                            Featured creatures
                         </h2>
 
                     </div>
+
+                    <Link
+                        to="/creatures"
+                        className="home__view-all"
+                    >
+                        View collection
+                        <span>→</span>
+                    </Link>
 
                 </div>
 
@@ -164,23 +280,52 @@ const Home = () => {
                 )}
 
 
-                {/* RESULTS */}
+                {/* FEATURED RESULTS */}
 
-                {!loading && !error && (
-                    <>
-                        <CreatureGrid
-                            creatures={creatures}
-                        />
+                {!loading &&
+                    !error &&
+                    featuredCreatures.length > 0 && (
 
-                        <Pagination
-                            currentPage={page}
-                            hasNextPage={hasNextPage}
-                            hasPreviousPage={hasPreviousPage}
-                            onNext={handleNextPage}
-                            onPrevious={handlePreviousPage}
-                        />
-                    </>
-                )}
+                        <div className="home__featured-grid">
+
+                            {featuredCreatures.map(
+                                (creature, index) => (
+                                    <CreatureCard
+                                        key={
+                                            creature.slug ||
+                                            creature.key ||
+                                            index
+                                        }
+                                        creature={creature}
+                                    />
+                                )
+                            )}
+
+                        </div>
+
+                    )}
+
+            </section>
+
+
+            {/* =========================
+                QUOTE
+            ========================= */}
+
+            <section className="home__quote">
+
+                <div className="home__quote-symbol">
+                    ✦
+                </div>
+
+                <p>
+                    "Every page holds a story.
+                    Every creature, a secret."
+                </p>
+
+                <span>
+                    — Keeper of the Archives
+                </span>
 
             </section>
 

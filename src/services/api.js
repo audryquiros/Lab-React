@@ -145,3 +145,98 @@ export const getSpellByKey = async (key) => {
         throw error;
     }
 };
+
+/**
+ * Obtener objetos mágicos
+ * @param {number} page - Página actual
+ * @param {number} limit - Cantidad de resultados
+ */
+export const getMagicItems = async (
+    page = 1,
+    limit = 20
+) => {
+    try {
+        const response = await fetch(
+            `${API_URL}/magicitems/?page=${page}&limit=${limit}`
+        );
+
+        if (!response.ok) {
+            throw new Error(
+                "No se pudieron obtener los objetos mágicos"
+            );
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error(
+            "Error obteniendo objetos mágicos:",
+            error
+        );
+
+        throw error;
+    }
+};
+
+
+/**
+ * Buscar objetos mágicos por nombre
+ * @param {string} name - Nombre del objeto
+ * @param {number} page - Página actual
+ * @param {number} limit - Cantidad de resultados
+ */
+export const searchMagicItems = async (
+    name,
+    page = 1,
+    limit = 20
+) => {
+    try {
+        const response = await fetch(
+            `${API_URL}/magicitems/?name__icontains=${encodeURIComponent(
+                name
+            )}&page=${page}&limit=${limit}`
+        );
+
+        if (!response.ok) {
+            throw new Error(
+                "No se encontraron objetos mágicos"
+            );
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error(
+            "Error buscando objetos mágicos:",
+            error
+        );
+
+        throw error;
+    }
+};
+
+
+/**
+ * Obtener un objeto mágico específico
+ * @param {string} key - Key del objeto
+ */
+export const getMagicItemByKey = async (key) => {
+    try {
+        const response = await fetch(
+            `${API_URL}/magicitems/${key}/`
+        );
+
+        if (!response.ok) {
+            throw new Error(
+                "No se pudo obtener el objeto mágico"
+            );
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error(
+            "Error obteniendo objeto mágico:",
+            error
+        );
+
+        throw error;
+    }
+};

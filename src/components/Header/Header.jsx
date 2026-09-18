@@ -7,6 +7,8 @@ const Header = () => {
         <header className="header">
             <div className="header__container">
 
+                {/* LOGO */}
+
                 <Link
                     to="/"
                     className="header__logo"
@@ -24,10 +26,20 @@ const Header = () => {
                 </Link>
 
 
+                {/* NAVIGATION */}
+
                 <nav className="header__nav">
 
                     <Link
                         to="/"
+                        className="header__link"
+                    >
+                        Home
+                    </Link>
+
+
+                    <Link
+                        to="/creatures"
                         className="header__link"
                     >
                         Creatures
@@ -42,12 +54,12 @@ const Header = () => {
                     </Link>
 
 
-                    <a
-                        href="#items"
+                    <Link
+                        to="/items"
                         className="header__link"
                     >
                         Magic Items
-                    </a>
+                    </Link>
 
                 </nav>
 
