@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+import ArchiveImage from "../ArchiveImage/ArchiveImage";
+
 import "./CreatureCard.css";
 
 const CreatureCard = ({ creature }) => {
@@ -20,6 +22,12 @@ const CreatureCard = ({ creature }) => {
 
     return (
         <article className="creature-card">
+            <ArchiveImage
+                kind="creature"
+                data={creature}
+                variant="card"
+            />
+
             <div className="creature-card__ornament">
                 ✦
             </div>

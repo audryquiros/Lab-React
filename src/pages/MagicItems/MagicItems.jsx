@@ -130,7 +130,7 @@ const MagicItems = () => {
             <section className="magic-items__hero">
 
                 <div className="magic-items__hero-symbol">
-                    ◇
+                    ✦
                 </div>
 
                 <span className="magic-items__eyebrow">

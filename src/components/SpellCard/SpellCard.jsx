@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+import ArchiveImage from "../ArchiveImage/ArchiveImage";
+
 import "./SpellCard.css";
 
 const SpellCard = ({ spell }) => {
@@ -15,6 +17,12 @@ const SpellCard = ({ spell }) => {
 
     return (
         <article className="spell-card">
+
+            <ArchiveImage
+                kind="spell"
+                data={spell}
+                variant="card"
+            />
 
             <div className="spell-card__ornament">
                 ✦

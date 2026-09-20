@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 
+import ArchiveImage from "../ArchiveImage/ArchiveImage";
+
 import "./MagicItemCard.css";
 
 const MagicItemCard = ({ item }) => {
@@ -21,8 +23,14 @@ const MagicItemCard = ({ item }) => {
     return (
         <article className="magic-item-card">
 
+            <ArchiveImage
+                kind="magic-item"
+                data={item}
+                variant="card"
+            />
+
             <div className="magic-item-card__ornament">
-                ◇
+                ✦
             </div>
 
             <div className="magic-item-card__content">

@@ -171,7 +171,7 @@ const Home = () => {
                     >
 
                         <div className="home__collection-symbol">
-                            ✧
+                            ✦
                         </div>
 
                         <span>
@@ -204,7 +204,7 @@ const Home = () => {
                     >
 
                         <div className="home__collection-symbol">
-                            ◇
+                            ✦
                         </div>
 
                         <span>

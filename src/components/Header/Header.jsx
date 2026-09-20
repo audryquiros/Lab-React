@@ -1,13 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import "./Header.css";
 
 const Header = () => {
+    const location = useLocation();
+
+    const isActive = (path) => {
+        if (path === "/") {
+            return location.pathname === "/";
+        }
+
+        return location.pathname.startsWith(path);
+    };
+
     return (
         <header className="header">
             <div className="header__container">
-
-                {/* LOGO */}
 
                 <Link
                     to="/"
@@ -26,13 +34,15 @@ const Header = () => {
                 </Link>
 
 
-                {/* NAVIGATION */}
-
                 <nav className="header__nav">
 
                     <Link
                         to="/"
-                        className="header__link"
+                        className={`header__link ${
+                            isActive("/")
+                                ? "header__link--active"
+                                : ""
+                        }`}
                     >
                         Home
                     </Link>
@@ -40,7 +50,11 @@ const Header = () => {
 
                     <Link
                         to="/creatures"
-                        className="header__link"
+                        className={`header__link ${
+                            isActive("/creatures")
+                                ? "header__link--active"
+                                : ""
+                        }`}
                     >
                         Creatures
                     </Link>
@@ -48,7 +62,11 @@ const Header = () => {
 
                     <Link
                         to="/spells"
-                        className="header__link"
+                        className={`header__link ${
+                            isActive("/spells")
+                                ? "header__link--active"
+                                : ""
+                        }`}
                     >
                         Spells
                     </Link>
@@ -56,7 +74,11 @@ const Header = () => {
 
                     <Link
                         to="/items"
-                        className="header__link"
+                        className={`header__link ${
+                            isActive("/items")
+                                ? "header__link--active"
+                                : ""
+                        }`}
                     >
                         Magic Items
                     </Link>

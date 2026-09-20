@@ -50,6 +50,11 @@
    CARD
 ========================= */
 
+.spell-detail__card > .archive-image {
+    position: relative;
+    z-index: 2;
+}
+
 .spell-detail__card {
     position: relative;
 

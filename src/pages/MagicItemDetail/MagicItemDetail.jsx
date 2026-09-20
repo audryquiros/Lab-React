@@ -5,6 +5,7 @@ import { getMagicItemByKey } from "../../services/api";
 
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import ArchiveImage from "../../components/ArchiveImage/ArchiveImage";
 
 import "./MagicItemDetail.css";
 
@@ -28,8 +29,7 @@ const MagicItemDetail = () => {
                 setLoading(true);
                 setError(null);
 
-                const data =
-                    await getMagicItemByKey(id);
+                const data = await getMagicItemByKey(id);
 
                 setItem(data);
             } catch (error) {
@@ -57,6 +57,7 @@ const MagicItemDetail = () => {
     if (error) {
         return (
             <main className="magic-item-detail">
+
                 <ErrorMessage
                     message={error}
                 />
@@ -67,6 +68,7 @@ const MagicItemDetail = () => {
                 >
                     ← Back to magic items
                 </Link>
+
             </main>
         );
     }
@@ -101,6 +103,14 @@ const MagicItemDetail = () => {
               item.weight?.value
             : item.weight || "—";
 
+    const imageUrl =
+        item.image ||
+        item.img ||
+        item.image_url ||
+        item.illustration?.file_url ||
+        item.illustration?.url ||
+        null;
+
     return (
         <main className="magic-item-detail">
 
@@ -115,9 +125,31 @@ const MagicItemDetail = () => {
 
                 <section className="magic-item-detail__card">
 
+                    {/* =========================
+                        IMAGE
+                    ========================= */}
+
+                    <ArchiveImage
+                        src={imageUrl}
+                        fallback="/archive/magic-item-placeholder.svg"
+                        alt={
+                            item.name ||
+                            "Enchanted artifact"
+                        }
+                        className="magic-item-detail__image"
+                    />
+
+                    {/* =========================
+                        SYMBOL
+                    ========================= */}
+
                     <div className="magic-item-detail__symbol">
-                        ◇
+                        ✦
                     </div>
+
+                    {/* =========================
+                        HEADER
+                    ========================= */}
 
                     <div className="magic-item-detail__header">
 
@@ -210,7 +242,10 @@ const MagicItemDetail = () => {
 
                                 {Array.isArray(item.desc) ? (
                                     item.desc.map(
-                                        (paragraph, index) => (
+                                        (
+                                            paragraph,
+                                            index
+                                        ) => (
                                             <p
                                                 key={index}
                                             >
@@ -231,7 +266,7 @@ const MagicItemDetail = () => {
 
 
                     {/* =========================
-                        ITEM DETAILS
+                        ARTIFACT DETAILS
                     ========================= */}
 
                     <section className="magic-item-detail__section">
@@ -286,7 +321,7 @@ const MagicItemDetail = () => {
 
 
                     {/* =========================
-                        SPECIAL PROPERTIES
+                        PROPERTIES
                     ========================= */}
 
                     {item.properties && (
@@ -323,12 +358,14 @@ const MagicItemDetail = () => {
                                     )
                                 ) : (
                                     <div className="magic-item-detail__property">
+
                                         {typeof item.properties ===
                                         "object"
                                             ? JSON.stringify(
                                                   item.properties
                                               )
                                             : item.properties}
+
                                     </div>
                                 )}
 

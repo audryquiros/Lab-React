@@ -5,6 +5,7 @@ import { getSpellByKey } from "../../services/api";
 
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import ArchiveImage from "../../components/ArchiveImage/ArchiveImage";
 
 import "./SpellDetail.css";
 
@@ -15,10 +16,6 @@ const SpellDetail = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    /* =========================
-       SCROLL TO TOP
-    ========================= */
-
     useEffect(() => {
         window.scrollTo({
             top: 0,
@@ -26,17 +23,14 @@ const SpellDetail = () => {
         });
     }, []);
 
-    /* =========================
-       LOAD SPELL
-    ========================= */
-
     useEffect(() => {
         const loadSpell = async () => {
             try {
                 setLoading(true);
                 setError(null);
 
-                const data = await getSpellByKey(id);
+                const data =
+                    await getSpellByKey(id);
 
                 setSpell(data);
             } catch (error) {
@@ -53,10 +47,6 @@ const SpellDetail = () => {
         loadSpell();
     }, [id]);
 
-    /* =========================
-       LOADING
-    ========================= */
-
     if (loading) {
         return (
             <main className="spell-detail">
@@ -64,10 +54,6 @@ const SpellDetail = () => {
             </main>
         );
     }
-
-    /* =========================
-       ERROR
-    ========================= */
 
     if (error) {
         return (
@@ -91,10 +77,6 @@ const SpellDetail = () => {
     if (!spell) {
         return null;
     }
-
-    /* =========================
-       SAFE VALUES
-    ========================= */
 
     const level =
         typeof spell.level === "object"
@@ -133,8 +115,6 @@ const SpellDetail = () => {
 
             <div className="spell-detail__container">
 
-                {/* BACK */}
-
                 <Link
                     to="/spells"
                     className="spell-detail__back"
@@ -142,17 +122,21 @@ const SpellDetail = () => {
                     ← Back to spell library
                 </Link>
 
-
-                {/* SPELL CARD */}
-
                 <section className="spell-detail__card">
+
+                    <ArchiveImage
+                        src={null}
+                        fallback="/archive/spell-placeholder.svg"
+                        alt={
+                            spell.name ||
+                            "Magical spell"
+                        }
+                        className="spell-detail__image"
+                    />
 
                     <div className="spell-detail__symbol">
                         ✦
                     </div>
-
-
-                    {/* HEADER */}
 
                     <div className="spell-detail__header">
 
@@ -171,7 +155,9 @@ const SpellDetail = () => {
                     </div>
 
 
-                    {/* OVERVIEW */}
+                    {/* =========================
+                        OVERVIEW
+                    ========================= */}
 
                     <div className="spell-detail__overview">
 
@@ -187,7 +173,6 @@ const SpellDetail = () => {
 
                         </div>
 
-
                         <div className="spell-detail__item">
 
                             <span>
@@ -200,7 +185,6 @@ const SpellDetail = () => {
 
                         </div>
 
-
                         <div className="spell-detail__item">
 
                             <span>
@@ -212,7 +196,6 @@ const SpellDetail = () => {
                             </strong>
 
                         </div>
-
 
                         <div className="spell-detail__item">
 
@@ -229,7 +212,9 @@ const SpellDetail = () => {
                     </div>
 
 
-                    {/* DESCRIPTION */}
+                    {/* =========================
+                        DESCRIPTION
+                    ========================= */}
 
                     {spell.desc && (
                         <section className="spell-detail__section">
@@ -238,15 +223,38 @@ const SpellDetail = () => {
                                 Description
                             </span>
 
-                            <p className="spell-detail__description">
-                                {spell.desc}
-                            </p>
+                            <div className="spell-detail__description">
+
+                                {Array.isArray(
+                                    spell.desc
+                                ) ? (
+                                    spell.desc.map(
+                                        (
+                                            paragraph,
+                                            index
+                                        ) => (
+                                            <p
+                                                key={index}
+                                            >
+                                                {paragraph}
+                                            </p>
+                                        )
+                                    )
+                                ) : (
+                                    <p>
+                                        {spell.desc}
+                                    </p>
+                                )}
+
+                            </div>
 
                         </section>
                     )}
 
 
-                    {/* SPELL DETAILS */}
+                    {/* =========================
+                        SPELL DETAILS
+                    ========================= */}
 
                     <section className="spell-detail__section">
 
@@ -268,7 +276,6 @@ const SpellDetail = () => {
 
                             </div>
 
-
                             <div className="spell-detail__stat">
 
                                 <span>
@@ -280,7 +287,6 @@ const SpellDetail = () => {
                                 </strong>
 
                             </div>
-
 
                             <div className="spell-detail__stat">
 
@@ -301,7 +307,9 @@ const SpellDetail = () => {
                     </section>
 
 
-                    {/* HIGHER LEVEL */}
+                    {/* =========================
+                        HIGHER LEVELS
+                    ========================= */}
 
                     {spell.higher_level && (
                         <section className="spell-detail__section">
@@ -310,15 +318,20 @@ const SpellDetail = () => {
                                 At Higher Levels
                             </span>
 
-                            <p className="spell-detail__description">
-                                {typeof spell.higher_level === "object"
-                                    ? Object.values(
-                                        spell.higher_level
-                                    )
-                                        .filter(Boolean)
-                                        .join(" ")
-                                    : spell.higher_level}
-                            </p>
+                            <div className="spell-detail__description">
+
+                                <p>
+                                    {typeof spell.higher_level ===
+                                    "object"
+                                        ? Object.values(
+                                              spell.higher_level
+                                          )
+                                              .filter(Boolean)
+                                              .join(" ")
+                                        : spell.higher_level}
+                                </p>
+
+                            </div>
 
                         </section>
                     )}

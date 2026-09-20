@@ -39,6 +39,11 @@
    CARD
 ========================= */
 
+.creature-detail__card > .archive-image {
+    position: relative;
+    z-index: 2;
+}
+
 .creature-detail__card {
     position: relative;
 

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="72%">
+      <stop offset="0" stop-color="#f0e7f6"/>
+      <stop offset="1" stop-color="#f7f3f8"/>
+    </radialGradient>
+    <radialGradient id="orb" cx="35%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset=".35" stop-color="#cdb7df"/>
+      <stop offset="1" stop-color="#8b6ba8"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="520" fill="url(#bg)"/>
+  <circle cx="400" cy="245" r="132" fill="#fff" opacity=".5"/>
+  <circle cx="400" cy="245" r="78" fill="url(#orb)"/>
+  <circle cx="400" cy="245" r="103" fill="none" stroke="#c09b55" stroke-width="3" stroke-dasharray="8 14"/>
+  <path d="M400 118v254M273 245h254M310 155l180 180M490 155L310 335" stroke="#8b6ba8" stroke-width="3" opacity=".45"/>
+  <path d="M400 125l10 27 29 2-22 18 7 29-24-15-24 15 7-29-22-18 29-2z" fill="#c09b55"/>
+  <circle cx="270" cy="145" r="5" fill="#c09b55"/>
+  <circle cx="530" cy="340" r="5" fill="#c09b55"/>
+  <circle cx="565" cy="170" r="4" fill="#8b6ba8"/>
+  <text x="400" y="452" text-anchor="middle" fill="#6b4c7a" font-family="Georgia, serif" font-size="22" letter-spacing="5">ARCANE ARCHIVES</text>
+</svg>

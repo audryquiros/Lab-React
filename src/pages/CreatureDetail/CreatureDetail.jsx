@@ -5,6 +5,7 @@ import { getCreatureByKey } from "../../services/api";
 
 import Loader from "../../components/Loader/Loader";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import ArchiveImage from "../../components/ArchiveImage/ArchiveImage";
 
 import "./CreatureDetail.css";
 
@@ -16,12 +17,20 @@ const CreatureDetail = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    }, []);
+
+    useEffect(() => {
         const loadCreature = async () => {
             try {
                 setLoading(true);
                 setError(null);
 
-                const data = await getCreatureByKey(id);
+                const data =
+                    await getCreatureByKey(id);
 
                 setCreature(data);
             } catch (error) {
@@ -49,14 +58,18 @@ const CreatureDetail = () => {
     if (error) {
         return (
             <main className="creature-detail">
-                <ErrorMessage message={error} />
+
+                <ErrorMessage
+                    message={error}
+                />
 
                 <Link
-                    to="/"
+                    to="/creatures"
                     className="creature-detail__back"
                 >
-                    ← Back to library
+                    ← Back to creature library
                 </Link>
+
             </main>
         );
     }
@@ -64,10 +77,6 @@ const CreatureDetail = () => {
     if (!creature) {
         return null;
     }
-
-    /* =========================
-       SAFE VALUES
-    ========================= */
 
     const creatureType =
         typeof creature.type === "object"
@@ -89,54 +98,58 @@ const CreatureDetail = () => {
             ? creature.alignment?.name
             : creature.alignment || "Unknown";
 
-    /* =========================
-       SPEED
-    ========================= */
-
     const speed =
         typeof creature.speed === "object"
             ? [
-                creature.speed.walk &&
-                    `Walk: ${creature.speed.walk}`,
+                  creature.speed.walk &&
+                      `Walk: ${creature.speed.walk}`,
 
-                creature.speed.swim &&
-                    `Swim: ${creature.speed.swim}`,
+                  creature.speed.swim &&
+                      `Swim: ${creature.speed.swim}`,
 
-                creature.speed.fly &&
-                    `Fly: ${creature.speed.fly}`,
+                  creature.speed.fly &&
+                      `Fly: ${creature.speed.fly}`,
 
-                creature.speed.climb &&
-                    `Climb: ${creature.speed.climb}`,
-            ]
-                .filter(Boolean)
-                .join(" · ")
+                  creature.speed.climb &&
+                      `Climb: ${creature.speed.climb}`,
+              ]
+                  .filter(Boolean)
+                  .join(" · ")
             : creature.speed || "—";
+
+    const imageUrl =
+        creature.illustration?.file_url ||
+        creature.illustration?.url ||
+        creature.image ||
+        null;
 
     return (
         <main className="creature-detail">
 
             <div className="creature-detail__container">
 
-                {/* BACK BUTTON */}
-
                 <Link
-                    to="/"
+                    to="/creatures"
                     className="creature-detail__back"
                 >
-                    ← Back to library
+                    ← Back to creature library
                 </Link>
 
-
-                {/* CREATURE CARD */}
-
                 <section className="creature-detail__card">
+
+                    <ArchiveImage
+                        src={imageUrl}
+                        fallback="/archive/creature-placeholder.svg"
+                        alt={
+                            creature.name ||
+                            "Magical creature"
+                        }
+                        className="creature-detail__image"
+                    />
 
                     <div className="creature-detail__symbol">
                         ✦
                     </div>
-
-
-                    {/* HEADER */}
 
                     <div className="creature-detail__header">
 
@@ -155,39 +168,46 @@ const CreatureDetail = () => {
                     </div>
 
 
-                    {/* OVERVIEW */}
+                    {/* =========================
+                        OVERVIEW
+                    ========================= */}
 
                     <div className="creature-detail__overview">
 
                         <div className="creature-detail__item">
-                            <span>Type</span>
+                            <span>
+                                Type
+                            </span>
 
                             <strong>
                                 {creatureType}
                             </strong>
                         </div>
 
-
                         <div className="creature-detail__item">
-                            <span>Size</span>
+                            <span>
+                                Size
+                            </span>
 
                             <strong>
                                 {size}
                             </strong>
                         </div>
 
-
                         <div className="creature-detail__item">
-                            <span>Challenge Rating</span>
+                            <span>
+                                Challenge Rating
+                            </span>
 
                             <strong>
                                 {challengeRating}
                             </strong>
                         </div>
 
-
                         <div className="creature-detail__item">
-                            <span>Alignment</span>
+                            <span>
+                                Alignment
+                            </span>
 
                             <strong>
                                 {alignment}
@@ -197,7 +217,9 @@ const CreatureDetail = () => {
                     </div>
 
 
-                    {/* DESCRIPTION */}
+                    {/* =========================
+                        DESCRIPTION
+                    ========================= */}
 
                     {creature.desc && (
                         <section className="creature-detail__section">
@@ -206,15 +228,38 @@ const CreatureDetail = () => {
                                 Description
                             </span>
 
-                            <p className="creature-detail__description">
-                                {creature.desc}
-                            </p>
+                            <div className="creature-detail__description">
+
+                                {Array.isArray(
+                                    creature.desc
+                                ) ? (
+                                    creature.desc.map(
+                                        (
+                                            paragraph,
+                                            index
+                                        ) => (
+                                            <p
+                                                key={index}
+                                            >
+                                                {paragraph}
+                                            </p>
+                                        )
+                                    )
+                                ) : (
+                                    <p>
+                                        {creature.desc}
+                                    </p>
+                                )}
+
+                            </div>
 
                         </section>
                     )}
 
 
-                    {/* COMBAT STATISTICS */}
+                    {/* =========================
+                        COMBAT STATISTICS
+                    ========================= */}
 
                     <section className="creature-detail__section">
 
@@ -231,15 +276,20 @@ const CreatureDetail = () => {
                                 </span>
 
                                 <strong>
-                                    {typeof creature.armor_class === "object"
-                                        ? creature.armor_class?.name ||
-                                          creature.armor_class?.value ||
+                                    {typeof creature.armor_class ===
+                                    "object"
+                                        ? creature
+                                              .armor_class
+                                              ?.name ||
+                                          creature
+                                              .armor_class
+                                              ?.value ||
                                           "—"
-                                        : creature.armor_class || "—"}
+                                        : creature.armor_class ||
+                                          "—"}
                                 </strong>
 
                             </div>
-
 
                             <div className="creature-detail__stat">
 
@@ -248,11 +298,11 @@ const CreatureDetail = () => {
                                 </span>
 
                                 <strong>
-                                    {creature.hit_points || "—"}
+                                    {creature.hit_points ||
+                                        "—"}
                                 </strong>
 
                             </div>
-
 
                             <div className="creature-detail__stat">
 
@@ -271,33 +321,40 @@ const CreatureDetail = () => {
                     </section>
 
 
-                    {/* ACTIONS */}
+                    {/* =========================
+                        ACTIONS
+                    ========================= */}
 
                     {creature.actions &&
                         creature.actions.length > 0 && (
-
                             <section className="creature-detail__section">
 
                                 <span className="creature-detail__section-label">
                                     Actions
                                 </span>
 
-
                                 <div className="creature-detail__actions">
 
                                     {creature.actions.map(
-                                        (action, index) => {
+                                        (
+                                            action,
+                                            index
+                                        ) => {
 
                                             const actionName =
                                                 typeof action.name ===
                                                 "object"
-                                                    ? action.name?.name
+                                                    ? action
+                                                          .name
+                                                          ?.name
                                                     : action.name;
 
                                             const actionDescription =
                                                 typeof action.desc ===
                                                 "object"
-                                                    ? action.desc?.name
+                                                    ? action
+                                                          .desc
+                                                          ?.name
                                                     : action.desc;
 
                                             return (
